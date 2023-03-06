@@ -25,7 +25,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 0 2% 0 2%;
+    padding: 0 0.4% 0 0.4%;
     cursor: pointer;
 }
 
@@ -34,8 +34,9 @@
     height: 10%;
     display: flex;
     align-items: center;
-    background-color: #FFFFFF;
+    background: #e2f3ff;
     border-radius: 20px 20px 0 0px;
+    margin-top: 1%;
 }
 
 .wrapper .calcBody .title img {
@@ -85,7 +86,7 @@
 .wrapper .calcBody .buttoBlock .button {
     width: 24%;
     height: 19%;
-    background: #E9F6FF;
+    background: #e2f3ff;
     display: flex;
     justify-content: center;
     align-items: center;

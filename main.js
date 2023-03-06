@@ -48,9 +48,9 @@ document.querySelector("#darkMode").addEventListener("click", function () {
                 x.style.backgroundColor = '#FAFAFA';
                 x.style.color = 'black';
             });
-            document.querySelectorAll(".btnColors").forEach(x => x.style.backgroundColor = '#E9F6FF');
+            document.querySelectorAll(".btnColors").forEach(x => x.style.backgroundColor = '#e2f3ff');
             document.querySelectorAll(".btnText").forEach(x => x.style.color = 'black');
-            document.querySelector(".topColors").style.backgroundColor = '#FAFAFA';
+            document.querySelector(".topColors").style.backgroundColor = '#e2f3ff';
 
             buttoBlock.addEventListener('mouseover', function (e) {
                 if (!e.target.classList.contains("button")) return;
@@ -71,6 +71,21 @@ document.querySelector("#darkMode").addEventListener("click", function () {
     }
 });
 
+buttoBlock.addEventListener('mouseover', function (e) {
+    if (!e.target.classList.contains("button")) return;
+        e.target.style.background = '#aaf0ff';
+});
+buttoBlock.addEventListener('mouseout', function (e) {
+    e.target.style.background = '';
+});
+
+buttoBlock.addEventListener('mousedown', function (e) {
+    if (!e.target.classList.contains("button")) return;
+        e.target.style.background = '#00c8ff';
+});
+buttoBlock.addEventListener('mouseup', function (e) {
+    e.target.style.background = '#aaf0ff';
+});
 
 buttoBlock.addEventListener("click", shiwCalc);
 
