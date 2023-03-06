@@ -15,77 +15,34 @@ outputInput.textContent = "0";
 
 document.querySelector("#darkMode").addEventListener("click", function () {
     let checkbox = document.querySelector("#darkMode");
+    if (checkbox.checked != true) {
+        localStorage.setItem("colorMode", "white");
+        showWhiteMode();
+    }
     if (checkbox.checked == true) {
-        document.querySelectorAll(".bloksColor").forEach(x => {
-            x.style.backgroundColor = '#00223A';
-            x.style.color = '#FFFFFF';
-        });
-        document.querySelectorAll(".btnColors").forEach(x => x.style.backgroundColor = '#001B2F');
-        document.querySelectorAll(".btnText").forEach(x => x.style.color = 'white');
-        document.querySelector(".topColors").style.backgroundColor = '#001B2F';
-
-        buttoBlock.addEventListener('mouseover', function (e) {
-            if (!e.target.classList.contains("button")) return;
-            e.target.style.background = 'rgb(36 87 123)';
-        });
-        buttoBlock.addEventListener('mouseout', function (e) {
-            if (!e.target.classList.contains("button")) return;
-            e.target.style.background = 'rgb(0, 27, 47)';
-        });
-
-        buttoBlock.addEventListener('mousedown', function (e) {
-            if (!e.target.classList.contains("button")) return;
-            e.target.style.background = 'rgb(2 22 37)';
-        });
-        buttoBlock.addEventListener('mouseup', function (e) {
-            if (!e.target.classList.contains("button")) return;
-            e.target.style.background = 'rgb(36 87 123)';
-        });
-
-    } else {
-        if (checkbox.checked != true) {
-            document.querySelectorAll(".bloksColor").forEach(x => {
-                x.style.backgroundColor = '#FAFAFA';
-                x.style.color = 'black';
-            });
-            document.querySelectorAll(".btnColors").forEach(x => x.style.backgroundColor = '#e2f3ff');
-            document.querySelectorAll(".btnText").forEach(x => x.style.color = 'black');
-            document.querySelector(".topColors").style.backgroundColor = '#e2f3ff';
-
-            buttoBlock.addEventListener('mouseover', function (e) {
-                if (!e.target.classList.contains("button")) return;
-                    e.target.style.background = '#aaf0ff';
-            });
-            buttoBlock.addEventListener('mouseout', function (e) {
-                e.target.style.background = '';
-            });
-            
-            buttoBlock.addEventListener('mousedown', function (e) {
-                if (!e.target.classList.contains("button")) return;
-                    e.target.style.background = '#00c8ff';
-            });
-            buttoBlock.addEventListener('mouseup', function (e) {
-                e.target.style.background = '#aaf0ff';
-            });
-        }
+        localStorage.setItem("colorMode", "black");
+        showDarkMode();
     }
 });
 
-buttoBlock.addEventListener('mouseover', function (e) {
-    if (!e.target.classList.contains("button")) return;
-        e.target.style.background = '#aaf0ff';
-});
-buttoBlock.addEventListener('mouseout', function (e) {
-    e.target.style.background = '';
-});
+let colorMode = localStorage.getItem("colorMode");
+if (colorMode) {
+    if (colorMode == "white") {
+        showWhiteMode();
+    }
+    if (colorMode == "black") {
+        document.querySelector("#darkMode").click();
+        showDarkMode();
+    }
+}
+if (checkbox.checked != true || colorMode == "white") {
+    showMouseHoverStylesWhite();
+}
 
-buttoBlock.addEventListener('mousedown', function (e) {
-    if (!e.target.classList.contains("button")) return;
-        e.target.style.background = '#00c8ff';
-});
-buttoBlock.addEventListener('mouseup', function (e) {
-    e.target.style.background = '#aaf0ff';
-});
+if (checkbox.checked == true || colorMode == "black") {
+    showMouseHoverStylesDark();
+}
+
 
 buttoBlock.addEventListener("click", shiwCalc);
 
@@ -226,4 +183,98 @@ function deletrOneValue() {
 
 }
 
+// стили интерфейса / Светлый / Темный 
 
+function showWhiteMode() {
+    document.querySelectorAll(".bloksColor").forEach(x => {
+        x.style.backgroundColor = '#FAFAFA';
+        x.style.color = 'black';
+    });
+    document.querySelectorAll(".btnColors").forEach(x => x.style.backgroundColor = '#e2f3ff');
+    document.querySelectorAll(".btnText").forEach(x => x.style.color = 'black');
+    document.querySelector(".topColors").style.backgroundColor = '#e2f3ff';
+
+    buttoBlock.addEventListener('mouseover', function (e) {
+        if (!e.target.classList.contains("button")) return;
+        e.target.style.background = '#aaf0ff';
+    });
+    buttoBlock.addEventListener('mouseout', function (e) {
+        e.target.style.background = '';
+    });
+
+    buttoBlock.addEventListener('mousedown', function (e) {
+        if (!e.target.classList.contains("button")) return;
+        e.target.style.background = '#00c8ff';
+    });
+    buttoBlock.addEventListener('mouseup', function (e) {
+        e.target.style.background = '#aaf0ff';
+    });
+}
+
+function showDarkMode() {
+    document.querySelectorAll(".bloksColor").forEach(x => {
+        x.style.backgroundColor = '#00223A';
+        x.style.color = '#FFFFFF';
+    });
+    document.querySelectorAll(".btnColors").forEach(x => x.style.backgroundColor = '#001B2F');
+    document.querySelectorAll(".btnText").forEach(x => x.style.color = 'white');
+    document.querySelector(".topColors").style.backgroundColor = '#001B2F';
+
+    buttoBlock.addEventListener('mouseover', function (e) {
+        if (!e.target.classList.contains("button")) return;
+        e.target.style.background = 'rgb(36 87 123)';
+    });
+    buttoBlock.addEventListener('mouseout', function (e) {
+        if (!e.target.classList.contains("button")) return;
+        e.target.style.background = 'rgb(0, 27, 47)';
+    });
+
+    buttoBlock.addEventListener('mousedown', function (e) {
+        if (!e.target.classList.contains("button")) return;
+        e.target.style.background = 'rgb(2 22 37)';
+    });
+    buttoBlock.addEventListener('mouseup', function (e) {
+        if (!e.target.classList.contains("button")) return;
+        e.target.style.background = 'rgb(36 87 123)';
+    });
+}
+
+// стили наведения мыши / Светлый / Темный 
+
+function showMouseHoverStylesWhite() {
+    buttoBlock.addEventListener('mouseover', function (e) {
+        if (!e.target.classList.contains("button")) return;
+        e.target.style.background = '#aaf0ff';
+    });
+    buttoBlock.addEventListener('mouseout', function (e) {
+        e.target.style.background = '';
+    });
+
+    buttoBlock.addEventListener('mousedown', function (e) {
+        if (!e.target.classList.contains("button")) return;
+        e.target.style.background = '#00c8ff';
+    });
+    buttoBlock.addEventListener('mouseup', function (e) {
+        e.target.style.background = '#aaf0ff';
+    });
+}
+
+function showMouseHoverStylesDark() {
+    buttoBlock.addEventListener('mouseover', function (e) {
+        if (!e.target.classList.contains("button")) return;
+        e.target.style.background = 'rgb(36 87 123)';
+    });
+    buttoBlock.addEventListener('mouseout', function (e) {
+        if (!e.target.classList.contains("button")) return;
+        e.target.style.background = 'rgb(0, 27, 47)';
+    });
+
+    buttoBlock.addEventListener('mousedown', function (e) {
+        if (!e.target.classList.contains("button")) return;
+        e.target.style.background = 'rgb(2 22 37)';
+    });
+    buttoBlock.addEventListener('mouseup', function (e) {
+        if (!e.target.classList.contains("button")) return;
+        e.target.style.background = 'rgb(36 87 123)';
+    });
+}
