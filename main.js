@@ -7,42 +7,12 @@ let operator = '';
 let totalVariable = "";
 let opr;
 let resetoutputCache;
+let colorMode = localStorage.getItem("colorMode");
 
 let buttoBlock = document.querySelector(".buttoBlock");
 let outputInput = document.querySelector(".outputInput");
 let outputCache = document.querySelector(".outputCache");
 outputInput.textContent = "0";
-
-document.querySelector("#darkMode").addEventListener("click", function () {
-    let checkbox = document.querySelector("#darkMode");
-    if (checkbox.checked != true) {
-        localStorage.setItem("colorMode", "white");
-        showWhiteMode();
-    }
-    if (checkbox.checked == true) {
-        localStorage.setItem("colorMode", "black");
-        showDarkMode();
-    }
-});
-
-let colorMode = localStorage.getItem("colorMode");
-if (colorMode) {
-    if (colorMode == "white") {
-        showWhiteMode();
-    }
-    if (colorMode == "black") {
-        document.querySelector("#darkMode").click();
-        showDarkMode();
-    }
-}
-if (checkbox.checked != true || colorMode == "white") {
-    showMouseHoverStylesWhite();
-}
-
-if (checkbox.checked == true || colorMode == "black") {
-    showMouseHoverStylesDark();
-}
-
 
 buttoBlock.addEventListener("click", shiwCalc);
 
@@ -181,6 +151,37 @@ function deletrOneValue() {
         outputInput.textContent = secondVariable;
     }
 
+}
+
+// подключение и условия срабатывания / Светлый / Темный 
+
+document.querySelector("#darkMode").addEventListener("click", function () {
+    let checkbox = document.querySelector("#darkMode");
+    if (checkbox.checked != true) {
+        localStorage.setItem("colorMode", "white");
+        showWhiteMode();
+    }
+    if (checkbox.checked == true) {
+        localStorage.setItem("colorMode", "black");
+        showDarkMode();
+    }
+});
+
+if (colorMode) {
+    if (colorMode == "white") {
+        showWhiteMode();
+    }
+    if (colorMode == "black") {
+        document.querySelector("#darkMode").click();
+        showDarkMode();
+    }
+}
+if (checkbox.checked != true || colorMode == "white") {
+    showMouseHoverStylesWhite();
+}
+
+if (checkbox.checked == true || colorMode == "black") {
+    showMouseHoverStylesDark();
 }
 
 // стили интерфейса / Светлый / Темный 
