@@ -14,10 +14,34 @@ let outputInput = document.querySelector(".outputInput");
 let outputCache = document.querySelector(".outputCache");
 outputInput.textContent = "0";
 
+document.querySelector('body').addEventListener('keydown', shiwCalc);
+
 buttoBlock.addEventListener("click", shiwCalc);
 
 function shiwCalc(e) {
+    if (e.code == "Digit1" || e.code == "Numpad1") document.querySelector('#digit1').click();
+    if (e.code == "Digit2" || e.code == "Numpad2") document.querySelector('#digit2').click();
+    if (e.code == "Digit3" || e.code == "Numpad3") document.querySelector('#digit3').click();
+    if (e.code == "Digit4" || e.code == "Numpad4") document.querySelector('#digit4').click();
+    if (e.code == "Digit5" || e.code == "Numpad5") document.querySelector('#digit5').click();
+    if (e.code == "Digit6" || e.code == "Numpad6") document.querySelector('#digit6').click();
+    if (e.code == "Digit7" || e.code == "Numpad7") document.querySelector('#digit7').click();
+    if (e.code == "Digit8" || e.code == "Numpad8") document.querySelector('#digit8').click();
+    if (e.code == "Digit9" || e.code == "Numpad9") document.querySelector('#digit9').click();
+    if (e.code == "Digit0" || e.code == "Numpad0") document.querySelector('#digit0').click();
+    if (e.code == "Escape" || e.code == "Delete") document.querySelector('#Delete').click();
+    if (e.code == "ShiftLeft" && e.code == "Digit2") document.querySelector('#radical').click();
+    if (e.code == "ShiftLeft" && e.code == "Digit5") document.querySelector('#percent').click();
+    if (e.code == "NumpadAdd") document.querySelector('#numpadAdd').click();
+    if (e.code == "Minus" || e.code == "NumpadSubtract") document.querySelector('#numpadSubtract').click();
+    if (e.code == "ShiftLeft" && e.code == "Digit8" || e.code == "NumpadMultiply") document.querySelector('#numpadMultiply').click();
+    if (e.code == "Slash" || e.code == "NumpadDivide") document.querySelector('#numpadDivide').click();
+    if (e.code == "Comma" || e.code == "NumpadDecimal") document.querySelector('#comma').click();
+    if (e.code == "Backspace") document.querySelector('#backspace').click();
+    if (e.code == "Equal" || e.code == "Enter" || e.code == "NumpadEnter") document.querySelector('#enter').click();
 
+    console.log(`keyup (Code = ${e.code}, Key = ${e.key})`)
+    
     if (!e.target.classList.contains("button")) return;
 
     if (!resetoutputCache) outputCache.textContent = "";
@@ -104,7 +128,8 @@ function givCalculateResult(operator) {
         case '*':
             return Number(firstVariable) * Number(secondVariable);
         case '/':
-            return Number(firstVariable) / Number(secondVariable);
+            if (secondVariable == 0) outputCache.textContent = "Деление на ноль невозможно";
+            else return Number(firstVariable) / Number(secondVariable);
         case '=':
             return givCalculateResult(operator);
         default:
@@ -279,3 +304,5 @@ function showMouseHoverStylesDark() {
         e.target.style.background = 'rgb(36 87 123)';
     });
 }
+
+
