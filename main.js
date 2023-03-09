@@ -41,7 +41,7 @@ function shiwCalc(e) {
     if (e.code == "Equal" || e.code == "Enter" || e.code == "NumpadEnter") document.querySelector('#enter').click();
 
     console.log(`keyup (Code = ${e.code}, Key = ${e.key})`)
-    
+
     if (!e.target.classList.contains("button")) return;
 
     if (!resetoutputCache) outputCache.textContent = "";
@@ -50,6 +50,8 @@ function shiwCalc(e) {
     let clickValue = e.target.textContent;
 
     if (numbersBtnArray.includes(clickValue)) {
+        if (clickValue == "." && outputInput.textContent.indexOf('.') != -1) return;
+        if (outputInput.textContent != outputInput.textContent.substring(0, 14) && !operator || outputInput.textContent != outputInput.textContent.substring(0, 14) && secondVariable) return;
         if (outputInput.textContent == "0") {
             outputInput.textContent = clickValue;
         } else {
@@ -59,6 +61,7 @@ function shiwCalc(e) {
             firstVariable += clickValue;
         } else {
             outputInput.textContent = "";
+            outputInput.style.fontSize = "32px"
             secondVariable += clickValue;
             outputInput.textContent += secondVariable;
         }
@@ -98,8 +101,18 @@ function shiwCalc(e) {
                     } else {
                         let fst = firstVariable;
                         let sec = secondVariable;
+
                         totalVariable = givCalculateResult(operator);
-                        outputInput.textContent = totalVariable;
+                        if (outputInput.textContent > outputInput.textContent.substring(0, 11)){
+                            outputInput.style.fontSize = "24px"
+                            outputCache.style.fontSize = "14px"
+                            outputInput.textContent = totalVariable;
+                        } else {
+                            outputInput.style.fontSize = "32px"
+                            outputCache.style.fontSize = "24px"
+                            outputInput.textContent = totalVariable;
+                        }
+
                         firstVariable = totalVariable;
                         secondVariable = "";
                         if (operator && symbolsBtnArray.includes(clickValue))
@@ -156,6 +169,7 @@ function givPercentResult(operator) {
 
 function resetCalc() {
     clickValue = "";
+    outputInput.style.fontSize = "32px"
     outputInput.textContent = "0";
     outputCache.textContent = "";
     firstVariable = "";
